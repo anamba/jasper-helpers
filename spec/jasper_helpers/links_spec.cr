@@ -28,6 +28,14 @@ describe JasperHelpers::Links do
       button_to("Save", "/save", :put).should eq expected_form(override_method: :put)
     end
 
+    it "accepts options without method" do
+      button_to("Save", "/save", class: "myclass").should eq expected_form(css_class: "myclass")
+    end
+
+    it "accepts options with method" do
+      button_to("Save", "/save", :put, class: "myclass").should eq expected_form(override_method: :put, css_class: "myclass")
+    end
+
     context "with block" do
       it "renders form with hidden field" do
         form = button_to("Save", "/save", :delete) do

@@ -21,6 +21,12 @@ module JasperHelpers::Links
     end
   end
 
+  def button_to(body : String, url : String, method : Symbol = :post, **options : Object)
+    form(action: url, method: method) do
+      content(:button, body, {:type => "submit"}.merge(options.to_h))
+    end
+  end
+
   def button_to(body : String, url : String, method : Symbol = :post)
     form(action: url, method: method) do
       String.build do |str|
